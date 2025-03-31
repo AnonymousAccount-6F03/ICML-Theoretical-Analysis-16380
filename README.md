@@ -80,8 +80,9 @@ Once these two losses are integrated into the value/advantage function calculati
 
 In the field of Constrained Reinforcement Learning (Constrained RL), similar theoretical discussions exist:
 
-- If constraint term $\mathcal{C}(s,a)$ is introduced with the expectation of satisfying $𝔼[\sum_t \gamma^t \mathcal{C}(s_t,a_t)] \leq \delta$, it can be integrated into the objective function through Lagrangian multipliers.
+- If constraint term $\mathcal{C}(s,a)$ is introduced with the expectation of satisfying $𝔼[\sum_t \gamma^t \mathcal{C}(s_t,a_t)] \leq \delta$, it can be integrated into the objective function through Lagrangian multiplier $\lambda$.
 - When the Lagrangian factor $\lambda$ is dynamically adjusted to an appropriate level, the final optimal policy will maximize the primary task reward while satisfying the constraints.
+- Our method can be viewed as a variant of constrained reinforcement learning, where $\beta _1$ and $\beta _2$ play roles similar to Lagrangian multipliers, balancing the primary reward optimization against the satisfaction of distance and similarity constraints.
 
 Applying this to our example, distance loss and similarity loss can be viewed as two types of "soft constraints," whose "feasible" or "better" states naturally meet the expected satisfaction (smaller losses mean safer and more efficient). Therefore, by balancing the loss terms in PPO and continuously updating the Lagrangian multiplier coefficients (if implemented through methods such as multi-objective RL or Constrained PPO), the converging policy can theoretically guarantee a balance between safety and efficiency.
 
