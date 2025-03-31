@@ -100,7 +100,7 @@ Your experimental results also confirm the effectiveness of these theoretical an
 
 1. As shown in Table 4 of the paper, removing the distance constraint ($L_{dist}$) results in a 10.28% decrease in success rate (SR) and a 9.38% decrease in path efficiency (SPL); removing the similarity constraint ($L_{sim}$) results in a 3.58% decrease in success rate and a 6.66% decrease in path efficiency.
 2. As shown in Table 1, compared to baseline methods, after introducing these two constraints, the number of training epochs required to achieve a 90% success rate decreased by an average of 36.41%, indicating that the constraints indeed help improve learning efficiency.
-3. The trajectory comparison in Figure 1 visually demonstrates that navigation paths with constraints added are more direct and safer.
+3. The trajectory comparison in Figure 1 and [Visualizations](https://github.com/AnonymousAccount-6F03/ICML-Visualizations-16380) visually demonstrates that navigation paths with constraints added are more direct and safer.
 
 ## 4. Summary
 
