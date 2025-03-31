@@ -55,8 +55,8 @@ Let:
 
 $$
 \widetilde{Q}^\pi(s,a) = \mathbb{E}\left[\sum_{k=0}^\infty \gamma^k \bigl(r(s_{t+k},a_{t+k})
--\beta_1 L_{\mathrm{dist}}(s_{t+k},a_{t+k})
--\beta_2 L_{\mathrm{sim}}(s_{t+k},a_{t+k}) \bigr)\right]
+-\beta_1 \cdot L_{\mathrm{dist}}(s_{t+k},a_{t+k})
+-\beta_2 \cdot L_{\mathrm{sim}}(s_{t+k},a_{t+k}) \bigr)\right]
 $$
 
 Then:
