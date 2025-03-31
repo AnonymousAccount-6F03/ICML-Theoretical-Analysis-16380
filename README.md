@@ -17,7 +17,7 @@ Let the reinforcement learning task be described by a Markov Decision Process (M
 The objective of PPO is to learn a policy $\pi_\theta(a \mid s)$ by maximizing the expected cumulative reward:
 
 $$
-J(\theta) = \mathbb{\text{E}} _{s _0,a _0,\dots} \left[\sum _{t=0}^{\infty} \gamma^t \cdot r(s _t,a _t) \right]
+J(\theta) = 𝔼 _{s _0,a _0,\dots} \left[\sum _{t=0}^{\infty} \gamma^t \cdot r(s _t,a _t) \right]
 $$
 
 While constraining updates between the old policy $\pi_{\theta_{\text{old}}}$ and the new policy $\pi_{\theta}$ to prevent policy collapse.
@@ -32,7 +32,7 @@ We introduce two additional constraint (loss) terms:
 By incorporating these additional loss terms as "negative rewards" or "constraint penalties" into the original PPO loss function (or integrating them into the original reward through multi-task reward weighting), the policy optimization objective becomes:
 
 $$
-\max _\theta \widetilde{J}(\theta) = \mathbb{\text{E}} \left[ \sum _{t=0}^{\infty} \gamma^t \left(r(s _t,a _t)
+\max _\theta \widetilde{J}(\theta) = 𝔼 \left[ \sum _{t=0}^{\infty} \gamma^t \left(r(s _t,a _t)
 -\beta _1 \cdot L _{\mathrm{dist}}(s _t,a _t)
 -\beta _2 \cdot L _{\mathrm{sim}}(s _t,a _t) \right) \right]
 $$
@@ -46,7 +46,7 @@ where $\beta _1$ and $\beta _2$ are hyperparameters that balance the intrinsic r
 In policy gradient frameworks (including PPO), the direction of policy updates can generally be represented as:
 
 $$
-\nabla _\theta \widetilde{J}(\theta) \approx \mathbb{\text{E}} _{s,a \sim \pi _\theta} \left[\nabla _\theta \log \pi _\theta(a \mid s), \widetilde{A}^\pi(s,a) \right]
+\nabla _\theta \widetilde{J}(\theta) \approx 𝔼 _{s,a \sim \pi _\theta} \left[\nabla _\theta \log \pi _\theta(a \mid s), \widetilde{A}^\pi(s,a) \right]
 $$
 
 where $\widetilde{A}^\pi(s,a)$ is the new advantage function that incorporates modifications from the additional penalty terms.
@@ -54,7 +54,7 @@ where $\widetilde{A}^\pi(s,a)$ is the new advantage function that incorporates m
 Let:
 
 $$
-\widetilde{Q}^\pi(s,a) = \mathbb{\text{E}}\left[\sum_{k=0}^\infty \gamma^k \bigl(r(s_{t+k},a_{t+k})
+\widetilde{Q}^\pi(s,a) = 𝔼\left[\sum_{k=0}^\infty \gamma^k \bigl(r(s_{t+k},a_{t+k})
 -\beta_1 \cdot L_{\mathrm{dist}}(s_{t+k},a_{t+k})
 -\beta_2 \cdot L_{\mathrm{sim}}(s_{t+k},a_{t+k}) \bigr)\right]
 $$
@@ -80,7 +80,7 @@ Once these two losses are integrated into the value/advantage function calculati
 
 In the field of Constrained Reinforcement Learning (Constrained RL), similar theoretical discussions exist:
 
-- If constraint term $\mathcal{C}(s,a)$ is introduced with the expectation of satisfying $\mathbb{\text{E}}[\sum_t \gamma^t \mathcal{C}(s_t,a_t)] \leq \delta$, it can be integrated into the objective function through Lagrangian multipliers.
+- If constraint term $\mathcal{C}(s,a)$ is introduced with the expectation of satisfying $𝔼[\sum_t \gamma^t \mathcal{C}(s_t,a_t)] \leq \delta$, it can be integrated into the objective function through Lagrangian multipliers.
 - When the Lagrangian factor $\lambda$ is dynamically adjusted to an appropriate level, the final optimal policy will maximize the primary task reward while satisfying the constraints.
 
 Applying this to our example, distance loss and similarity loss can be viewed as two types of "soft constraints," whose "feasible" or "better" states naturally meet the expected satisfaction (smaller losses mean safer and more efficient). Therefore, by balancing the loss terms in PPO and continuously updating the Lagrangian multiplier coefficients (if implemented through methods such as multi-objective RL or Constrained PPO), the converging policy can theoretically guarantee a balance between safety and efficiency.
